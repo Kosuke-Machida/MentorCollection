@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class MstCharacter : MonoBehaviour {
-
-	[SerializeField]
+[System.SerializableAttribute]
+public class MstCharacter
+{
+    [SerializeField]
     private int
         id,
         rarity,
@@ -33,4 +32,5 @@ public class MstCharacter : MonoBehaviour {
         upperEnergy = int.Parse( data[8] );
         initialCost = int.Parse( data[9] );
     }
+
 }

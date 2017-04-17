@@ -1,4 +1,4 @@
- id,name,imageId,flavorText,rarity,maxLevel,"growthType(1:早熟, 2:線形, 3,晩成)",lowerEnergy,upperEnergy,initialCost
+id,name,imageId,flavorText,rarity,maxLevel,"growthType(1:早熟, 2:線形, 3,晩成)",lowerEnergy,upperEnergy,initialCost
 1,ののめ,notargs,口が上手い,1,50,1,2,200,10
 2,おかみらい,mirai,髪がサラサラ,1,50,2,10,800,216
 3,おおくぼ,okubo,こくぼ？,1,50,2,26,2000,1080
