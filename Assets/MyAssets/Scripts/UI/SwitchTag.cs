@@ -12,14 +12,17 @@ public class SwitchTag : MonoBehaviour {
 
 	void Start ()
 	{
+		// タグが開いていたら閉じる
+		_trainingPanel.SetActive(false);
+		_recluitPanel.SetActive(false);
+
+		// 各ボタンにアクションをセットする
 		_recluitButton.onClick.AddListener (() => {
 			OpenRecluitTag();
         });
-
 		_trainingButton.onClick.AddListener (() => {
             OpenTrainingTag();
         });
-
 		_closeButton.onClick.AddListener (() => {
              CloseTag();
         });
