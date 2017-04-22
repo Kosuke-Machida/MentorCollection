@@ -13,7 +13,7 @@ public class MasterDataManager : MonoBehaviour
     }
     private void Start()
     {
-        var characterCSV = Resources.Load("CSV/Character.csv") as TextAsset ;
+        var characterCSV = Resources.Load("CSV/Character.csv") as TextAsset;
         var csv = CSVReader.SplitCsvGrid(characterCSV.text);
         for (int i=1; i<csv.GetLength(1)-1; i++)
         {
