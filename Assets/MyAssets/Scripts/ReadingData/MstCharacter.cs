@@ -19,6 +19,8 @@ public class MstCharacter
         imageId,
         flavorText;
 
+    private bool hired = false;
+
     public int Rarity
     {
         get { return rarity; }
@@ -54,6 +56,11 @@ public class MstCharacter
         private set {}
     }
 
+    public bool Hired
+    {
+        get { return hired; }
+        set { hired = value; }
+    }
     public void SetFromCSV(string[] data)
     {
         id          = int.Parse( data[0] );
