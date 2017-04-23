@@ -19,6 +19,41 @@ public class MstCharacter
         imageId,
         flavorText;
 
+    public int Rarity
+    {
+        get { return rarity; }
+        private set {}
+    }
+
+    public int LowerEnergy
+    {
+        get { return lowerEnergy; }
+        private set {}
+    }
+
+    public int InitialCost
+    {
+        get { return initialCost; }
+        private set {}
+    }
+    public string Name
+    {
+        get { return name; }
+        private set {}
+    }
+
+    public string ImageId
+    {
+        get { return imageId; }
+        private set {}
+    }
+
+    public string FlavorText
+    {
+        get { return flavorText; }
+        private set {}
+    }
+
     public void SetFromCSV(string[] data)
     {
         id          = int.Parse( data[0] );

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SwitchTag : MonoBehaviour {
+public class TabChangeManager : MonoBehaviour {
 	[SerializeField] private GameObject _recluitPanel;
 	[SerializeField] private GameObject _trainingPanel;
 	[SerializeField] private Button _recluitButton;
@@ -36,6 +36,9 @@ public class SwitchTag : MonoBehaviour {
 			_trainingPanel.SetActive(false);
 		}
 		_recluitPanel.SetActive(true);
+
+		// MasterDataManagerにマッピングされたデータを表示していく
+		MentorRecluitItemManager.instance.SetUpAllMentorRecluitItem();
 	}
 
 	// Trainingタグを開くメソッド
