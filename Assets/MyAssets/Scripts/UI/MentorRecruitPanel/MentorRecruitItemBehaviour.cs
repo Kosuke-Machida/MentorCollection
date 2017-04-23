@@ -12,17 +12,6 @@ public class MentorRecruitItemBehaviour : MonoBehaviour {
 	[SerializeField] private Text _mentorRarity;
 	[SerializeField] private Text _mentorRecruitCostValue;
 	[SerializeField] private Button _mentorRecruitButton;
-	[SerializeField] GameObject _mentorTrainingItem;
-	[SerializeField] GameObject _mentorRecluitItemContent;
-	public void CreateItem ()
-	{
-		Instantiate(
-			_mentorTrainingItem,
-			_mentorRecluitItemContent.transform.position,
-			Quaternion.identity,
-			_mentorRecluitItemContent.transform
-		);
-	}
 
 	// MentorRecruitItemの値を入れていくメソッド
 	public void SetValues (MstCharacter chara)
@@ -42,17 +31,12 @@ public class MentorRecruitItemBehaviour : MonoBehaviour {
 		_mentorRecruitCostValue.text = string.Format("¥{0:#,0}", chara.InitialCost);
     }
 
-	public void SetButtonFunction()
+	public void SetButtonFunction (MstCharacter chara)
 	{
 		_mentorRecruitButton.onClick.AddListener (() => {
 			_mentorRecruitCostValue.text = "SOLD OUT";
 			_mentorRecruitButton.interactable = false;
-			Instantiate(
-				_mentorTrainingItem,
-				_mentorRecluitItemContent.transform.position,
-				Quaternion.identity,
-				_mentorRecluitItemContent.transform
-			);
+			MentorTrainingItemManager.instance.CreateItem(chara);
         });
 	}
 }

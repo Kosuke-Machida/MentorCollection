@@ -36,6 +36,9 @@ public class TabChangeManager : MonoBehaviour {
 			_trainingPanel.SetActive(false);
 		}
 		_recluitPanel.SetActive(true);
+
+		// MasterDataManagerにマッピングされたデータを表示していく
+		MentorRecluitItemManager.instance.SetUpAllMentorRecluitItem();
 	}
 
 	// Trainingタグを開くメソッド

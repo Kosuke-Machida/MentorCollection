@@ -4,21 +4,24 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class MentorRecluitItemManager : MonoBehaviour {
+	public static MentorRecluitItemManager instance;
+	[SerializeField] private MasterDataManager _masterDataManager;
+	[SerializeField] private GameObject _mentorRecluitItem;
+	[SerializeField] private GameObject _mentorRecluitItemContent;
 
-[SerializeField] private MasterDataManager _masterDataManager;
-[SerializeField] private GameObject _mentorRecluitItem;
-[SerializeField] private GameObject _mentorRecluitItemContent;
-
-private List<MstCharacter> _characterTable;
+	private List<MstCharacter> _characterTable;
 
 	void Start ()
 	{
+		// singletonを定義
+		if (instance == null)
+		{
+			instance = this;
+			DontDestroyOnLoad (instance.gameObject);
+		}
+ 	}
 
-		// MasterDataManagerにマッピングされたデータを表示していく
-		 SetUpAllMentorRecluitItem();
-	}
-
-	private void SetUpAllMentorRecluitItem ()
+	public void SetUpAllMentorRecluitItem ()
 	{
 		// キャラクターデータのListを入手
 		_characterTable = _masterDataManager.CharacterTable;
@@ -37,7 +40,9 @@ private List<MstCharacter> _characterTable;
 			// itemのMentorRecruitItemBehaviourを取得して値を入れていく
 			MentorRecruitItemBehaviour mentorRecruitItemBehaviour = item.GetComponent<MentorRecruitItemBehaviour>();
 			mentorRecruitItemBehaviour.SetValues(chara);
-			mentorRecruitItemBehaviour.SetButtonFunction();
+
+			// Instantiateしたbuttonのアクションを定義
+			mentorRecruitItemBehaviour.SetButtonFunction(chara);
 		}
 	}
 
