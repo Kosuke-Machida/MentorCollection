@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class UserInfoPanelBehavior : MonoBehaviour {
-
 	[SerializeField] Text myMoneyText;
 	[SerializeField] Text productivityBySecondText;
 	[SerializeField] Text workersCountText;
 	[SerializeField] Text myProductivity;
+	private GameObject[] userInfoPanels;
 
 	void Update ()
 	{
@@ -16,7 +16,7 @@ public class UserInfoPanelBehavior : MonoBehaviour {
 		 SetValues();
 	}
 
-	private void SetValues () //panel内のテキストを更新するメソッド
+	public void SetValues () //panel内のテキストを更新するメソッド
 	{
 		myMoneyText.text = "所持金 : " + string.Format("¥{0:#,0}", PlayerManager.instance.MyMoney);
 		productivityBySecondText.text = "+" + string.Format("{0:#,0}", PlayerManager.instance.MyProductivity / 2);
