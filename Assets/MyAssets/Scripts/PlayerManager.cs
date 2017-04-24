@@ -40,6 +40,14 @@ public class PlayerManager : MonoBehaviour {
 		StartCoroutine ("AutomaticProduce");
 	}
 
+	void Update ()
+	{
+		if (Input.GetMouseButtonDown(0))
+		{
+			myMoney += myProductivity;
+		}
+	}
+
 	// 毎秒で生産性の分の利益を上げるコルーチン
 	private IEnumerator AutomaticProduce ()
 	{
