@@ -16,7 +16,7 @@ public class MentorTrainingItemManager : MonoBehaviour {
 		}
  	}
 
-	public void CreateItem (MstCharacter chara)
+	public void CreateItem (MstCharacter chara) //MentorTrainingItemを生成して初期設定
 	{
 		GameObject item = Instantiate(
 						      _mentorTrainingItem,
@@ -25,8 +25,16 @@ public class MentorTrainingItemManager : MonoBehaviour {
 							  _mentorRecluitItemContent.transform
 						  );
 
-		// itemのMentorRecruitItemBehaviourを取得して値を入れていく
-			MentorTrainingItemBehaviour mentorTrainingItemBehaviour = item.GetComponent<MentorTrainingItemBehaviour>();
-			mentorTrainingItemBehaviour.SetValues(chara);
+		// itemのMentorTrainingItemBehaviourを取得する
+		MentorTrainingItemBehaviour mentorTrainingItemBehaviour = item.GetComponent<MentorTrainingItemBehaviour>();
+
+		//Instantiateされたボタンにイベントをセット
+		mentorTrainingItemBehaviour.SetButtonFunction(chara);
+
+		// MentorTrainingItemBehaviourのクラス変数charaをセット
+		mentorTrainingItemBehaviour.SetChara(chara);
+
+		//MentorTrainingItemに値をセット
+		mentorTrainingItemBehaviour.SetValues();
 	}
 }

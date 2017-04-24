@@ -13,7 +13,7 @@ public class MentorRecruitItemBehaviour : MonoBehaviour {
 	[SerializeField] private Text _mentorRecruitCostValue;
 	[SerializeField] private Button _mentorRecruitButton;
 
-	private MstCharacter _chara;
+	private MstCharacter _chara; // mentorの情報が入っているクラス変数
 
 	void Update ()
 	{
@@ -23,6 +23,7 @@ public class MentorRecruitItemBehaviour : MonoBehaviour {
 			// 所持金が雇用にかかる金額よりも大きい場合
 			if (PlayerManager.instance.MyMoney >= _chara.InitialCost)
 			{
+				// ボタンを有効にする
 				_mentorRecruitButton.interactable = true;
 			}
 		}
@@ -53,8 +54,17 @@ public class MentorRecruitItemBehaviour : MonoBehaviour {
 			// 所持金から雇用に使う金額を差し引く
 			PlayerManager.instance.MyMoney -= _chara.InitialCost;
 
-			// そのメンターの生産性をPlayerの生産性に足す
-			PlayerManager.instance.MyProductivity += chara.LowerEnergy;
+			// Userの所持メンター一覧にメンターを追加
+			PlayerManager.instance.MyMentors.Add(chara);
+
+			// メンターの生産性を計算する
+			chara.CaluculatePower();
+
+			//Playerの生産性を計算し直す
+			PlayerManager.instance.CaluculateMyProductivity();
+
+			//mentorのLevelを1に設定
+			chara.Level = 1;
 
 			// テキストを"SOLD OUT"に変更し、ステータスHiredをtrueに
 			_mentorRecruitCostValue.text = "SOLD OUT";
