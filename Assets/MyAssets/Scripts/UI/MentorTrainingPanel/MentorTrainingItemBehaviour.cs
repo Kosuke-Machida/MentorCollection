@@ -53,6 +53,7 @@ public class MentorTrainingItemBehaviour : MonoBehaviour {
 	public void SetButtonFunction (MstCharacter chara) //InstantiateされたButtonにListernerを定義する
 	{
 		_mentorTrainingButton.onClick.AddListener (() => {
+
 			// 所持金からレベル上げに使う金額を差し引く
 			PlayerManager.instance.MyMoney -= chara.InitialCost;
 

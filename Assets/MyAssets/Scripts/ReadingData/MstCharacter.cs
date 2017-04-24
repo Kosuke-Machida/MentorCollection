@@ -121,7 +121,8 @@ public class MstCharacter
 
     public void LevelUp ()
     {
-        level++; // レベルの値を1だけあげる
+        // レベルの値を1だけあげる
+        level++;
     }
 
 }
