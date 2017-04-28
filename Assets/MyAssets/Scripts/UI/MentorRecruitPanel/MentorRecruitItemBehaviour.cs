@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class MentorRecruitItemBehaviour : MonoBehaviour {
-
 	[SerializeField] private Image _mentorImage;
 	[SerializeField] private Text _mentorName;
 	[SerializeField] private Text _mentorFlavorText;
@@ -60,10 +59,10 @@ public class MentorRecruitItemBehaviour : MonoBehaviour {
 			// メンターの生産性を計算する
 			chara.CaluculatePower();
 
-			//Playerの生産性を計算し直す
+			// Playerの生産性を計算し直す
 			PlayerManager.instance.CaluculateMyProductivity();
 
-			//mentorのLevelを1に設定
+			// mentorのLevelを1に設定
 			chara.Level = 1;
 
 			// テキストを"SOLD OUT"に変更し、ステータスHiredをtrueに
@@ -75,6 +74,9 @@ public class MentorRecruitItemBehaviour : MonoBehaviour {
 
 			// TrainingItemをInstantiateする
 			MentorTrainingItemManager.instance.CreateItem(chara);
+
+			// avatorをinstantiateする
+			MentorAvatorManager.instance.CreateMentorAvator(chara);
         });
 	}
 }

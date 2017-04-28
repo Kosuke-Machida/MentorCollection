@@ -25,7 +25,6 @@ public class OffsetCenter : MonoBehaviour {
 	public void Start(){
 		// Screen Metrics
 		float dpi = Screen.dpi;
-		Debug.Log (dpi);
 		if(dpi <=0){
 			dpi = 1;
 		}
