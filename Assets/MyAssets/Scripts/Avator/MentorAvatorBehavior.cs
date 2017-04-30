@@ -6,7 +6,6 @@ using UnityEngine.AI;
 public class MentorAvatorBehavior : MonoBehaviour {
 	[SerializeField] private GameObject faceImage;
 	[SerializeField] private NavMeshAgent agent;
-	[SerializeField] private GameObject mainCamera;
 	[SerializeField] private GameObject diveCamera;
 	[SerializeField] private GameObject face;
 	private MstCharacter chara;
@@ -14,6 +13,12 @@ public class MentorAvatorBehavior : MonoBehaviour {
 	private Transform[] targets;
 	private int currentTarget;
 	private Sprite faceImageSource;
+
+	public GameObject DiveCamera
+	{
+		get { return diveCamera; }
+		private set {}
+	}
 
 	void Start ()
 	{
@@ -54,11 +59,17 @@ public class MentorAvatorBehavior : MonoBehaviour {
 		spriteRenderer.sprite = faceImageSource;
 	}
 
-	public void SwitchCameraToDive ()
+	public void StartVRView ()
 	{
-		diveCamera.SetActive(true);
-		faceImage.GetComponent<MeshRenderer>().enabled = false;
-		face.GetComponent<SpriteRenderer>().enabled = false;
+		CameraManager.instance.SwitchFromMainToVive(gameObject);
+		faceImage.GetComponent<SpriteRenderer>().enabled = false;
+		face.GetComponent<MeshRenderer>().enabled = false;
 	}
 
+	public void FinishVRView ()
+	{
+		CameraManager.instance.SwitchFromDiveToMain();
+		faceImage.GetComponent<SpriteRenderer>().enabled = true;
+		face.GetComponent<MeshRenderer>().enabled = true;
+	}
 }

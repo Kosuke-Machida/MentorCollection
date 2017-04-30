@@ -91,12 +91,12 @@ public class MentorTrainingItemBehaviour : MonoBehaviour {
 
 		// Discriptionボタンにアクションを追加
 		_mentorDiscriptionButton.onClick.AddListener (() => {
-
+			CameraManager.instance.SwitchFromMainToMentor(avator);
         });
 
 		// VRViewボタンにアクションを追加
 		_mentorVRViewButton.onClick.AddListener (() => {
-			avator.GetComponent<MentorAvatorBehavior>().SwitchCameraToDive();
+			avator.GetComponent<MentorAvatorBehavior>().StartVRView();
         });
 	}
 
