@@ -22,7 +22,7 @@ public class MentorAvatorManager : MonoBehaviour {
 		}
 	}
 
-	public void CreateMentorAvator (MstCharacter chara) // MentorのavatorをInstantiateするメソッド
+	public GameObject CreateMentorAvator (MstCharacter chara) // MentorのavatorをInstantiateするメソッド
 	{
 		// MentorのavatorをInstantiate
 		var avator = Instantiate(
@@ -35,5 +35,7 @@ public class MentorAvatorManager : MonoBehaviour {
 
 		// avatorの顔面を設定
 		mentorAvatorBehavior.SetFaceImage();
+
+		return avator;
 	}
 }

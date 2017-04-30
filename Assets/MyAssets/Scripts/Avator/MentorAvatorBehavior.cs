@@ -6,6 +6,9 @@ using UnityEngine.AI;
 public class MentorAvatorBehavior : MonoBehaviour {
 	[SerializeField] private GameObject faceImage;
 	[SerializeField] private NavMeshAgent agent;
+	[SerializeField] private GameObject mainCamera;
+	[SerializeField] private GameObject diveCamera;
+	[SerializeField] private GameObject face;
 	private MstCharacter chara;
 	private Transform target;
 	private Transform[] targets;
@@ -49,6 +52,13 @@ public class MentorAvatorBehavior : MonoBehaviour {
 		var spriteRenderer = faceImage.GetComponent<SpriteRenderer>();
 		faceImageSource = Resources.Load<Sprite>("Face/" + chara.ImageId);
 		spriteRenderer.sprite = faceImageSource;
+	}
+
+	public void SwitchCameraToDive ()
+	{
+		diveCamera.SetActive(true);
+		faceImage.GetComponent<MeshRenderer>().enabled = false;
+		face.GetComponent<SpriteRenderer>().enabled = false;
 	}
 
 }

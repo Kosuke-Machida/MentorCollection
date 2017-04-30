@@ -11,9 +11,12 @@ public class MentorTrainingItemBehaviour : MonoBehaviour {
 	[SerializeField] private Text _mentorLowerEnergy;
 	[SerializeField] private Text _mentorRarity;
 	[SerializeField] private Text _mentorTrainingCostValue;
+	[SerializeField] private Button _mentorDiscriptionButton;
+	[SerializeField] private Button _mentorVRViewButton;
 	[SerializeField] private Button _mentorTrainingButton;
 
 	private MstCharacter chara;
+	private GameObject avator;
 
 	void Update ()
 	{
@@ -31,6 +34,11 @@ public class MentorTrainingItemBehaviour : MonoBehaviour {
 	public void SetChara (MstCharacter _chara) //クラス変数charaにメンター情報をセット
 	{
 		chara = _chara;
+	}
+
+	public void SetAvator (GameObject _avator) //クラス変数avatorにメンター情報をセット
+	{
+		avator =  _avator;
 	}
 
 	public void SetValues () // MentorRecruitItemの値を入れていくメソッド
@@ -52,6 +60,7 @@ public class MentorTrainingItemBehaviour : MonoBehaviour {
 
 	public void SetButtonFunction (MstCharacter chara) //InstantiateされたButtonにListernerを定義する
 	{
+		// Trainingボタンにアクションを追加
 		_mentorTrainingButton.onClick.AddListener (() => {
 
 			// 所持金からレベル上げに使う金額を差し引く
@@ -78,6 +87,16 @@ public class MentorTrainingItemBehaviour : MonoBehaviour {
 				_mentorTrainingCostValue.text = "MAX LEVEL";
 			}
 
+        });
+
+		// Discriptionボタンにアクションを追加
+		_mentorDiscriptionButton.onClick.AddListener (() => {
+
+        });
+
+		// VRViewボタンにアクションを追加
+		_mentorVRViewButton.onClick.AddListener (() => {
+			avator.GetComponent<MentorAvatorBehavior>().SwitchCameraToDive();
         });
 	}
 

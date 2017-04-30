@@ -56,14 +56,14 @@ public class MentorRecruitItemBehaviour : MonoBehaviour {
 			// Userの所持メンター一覧にメンターを追加
 			PlayerManager.instance.MyMentors.Add(chara);
 
+			// mentorのLevelを1に設定
+			chara.Level = 1;
+
 			// メンターの生産性を計算する
 			chara.CaluculatePower();
 
 			// Playerの生産性を計算し直す
 			PlayerManager.instance.CaluculateMyProductivity();
-
-			// mentorのLevelを1に設定
-			chara.Level = 1;
 
 			// テキストを"SOLD OUT"に変更し、ステータスHiredをtrueに
 			_mentorRecruitCostValue.text = "SOLD OUT";
@@ -73,10 +73,13 @@ public class MentorRecruitItemBehaviour : MonoBehaviour {
 			_mentorRecruitButton.interactable = false;
 
 			// TrainingItemをInstantiateする
-			MentorTrainingItemManager.instance.CreateItem(chara);
+			var item = MentorTrainingItemManager.instance.CreateItem(chara);
 
 			// avatorをinstantiateする
-			MentorAvatorManager.instance.CreateMentorAvator(chara);
+			var avator = MentorAvatorManager.instance.CreateMentorAvator(chara);
+
+			// Training Itemのクラス変数にavatorを設定
+			item.GetComponent<MentorTrainingItemBehaviour>().SetAvator(avator);
         });
 	}
 }
