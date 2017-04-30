@@ -16,7 +16,7 @@ public class MentorTrainingItemManager : MonoBehaviour {
 		}
  	}
 
-	public void CreateItem (MstCharacter chara) //MentorTrainingItemを生成して初期設定
+	public GameObject CreateItem (MstCharacter chara) //MentorTrainingItemを生成して初期設定
 	{
 		GameObject item = Instantiate(
 						      _mentorTrainingItem,
@@ -36,5 +36,7 @@ public class MentorTrainingItemManager : MonoBehaviour {
 
 		//MentorTrainingItemに値をセット
 		mentorTrainingItemBehaviour.SetValues();
+
+		return item;
 	}
 }
