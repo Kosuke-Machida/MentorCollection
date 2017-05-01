@@ -7,6 +7,7 @@ public class MentorAvatorBehavior : MonoBehaviour {
 	[SerializeField] private GameObject faceImage;
 	[SerializeField] private NavMeshAgent agent;
 	[SerializeField] private GameObject diveCamera;
+	[SerializeField] private GameObject mentorCamera;
 	[SerializeField] private GameObject face;
 	private MstCharacter chara;
 	private Transform target;
@@ -17,6 +18,17 @@ public class MentorAvatorBehavior : MonoBehaviour {
 	public GameObject DiveCamera
 	{
 		get { return diveCamera; }
+		private set {}
+	}
+	public GameObject MentorCamera
+	{
+		get { return mentorCamera; }
+		private set {}
+	}
+
+	public MstCharacter Chara
+	{
+		get { return chara; }
 		private set {}
 	}
 

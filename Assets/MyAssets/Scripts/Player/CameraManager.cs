@@ -8,7 +8,11 @@ public class CameraManager : MonoBehaviour {
 	[SerializeField] private GameObject mainCamera;
 	[SerializeField] private GameObject normalStateUI;
 	[SerializeField] private GameObject vrViewUI;
-	[SerializeField] private Button backButton;
+	[SerializeField] private GameObject mentorViewUI;
+	[SerializeField] private Text mentorViewNameText;
+	[SerializeField] private Text mentorViewExplanationText;
+	[SerializeField] private Button backFromDiveToMainButton;
+	[SerializeField] private Button backFromMentorToMainButton;
 	private GameObject avator;
 
 	void Start ()
@@ -26,7 +30,7 @@ public class CameraManager : MonoBehaviour {
 		avator = _avator;
 
 		// ボタンに処理を記述
-		backButton.onClick.AddListener (() => {
+		backFromDiveToMainButton.onClick.AddListener (() => {
 			avator.GetComponent<MentorAvatorBehavior>().FinishVRView();
         });
 
@@ -48,7 +52,7 @@ public class CameraManager : MonoBehaviour {
 		// VR View画面用のGUIを無効にする
 		vrViewUI.SetActive(false);
 
-		//現在有効になっているカメラを無効にする
+		// Dive Cameraを無効にする
 		avator.GetComponent<MentorAvatorBehavior>().DiveCamera.SetActive(false);
 
 		// MainCameraを有効にする
@@ -63,12 +67,13 @@ public class CameraManager : MonoBehaviour {
 
 	public void SwitchFromMainToMentor (GameObject _avator)
 	{
+		print("わーいわーい");
 		// avatorをクラス変数に格納
 		avator = _avator;
 
 		// ボタンに処理を記述
-		backButton.onClick.AddListener (() => {
-			avator.GetComponent<MentorAvatorBehavior>().FinishVRView();
+		backFromMentorToMainButton.onClick.AddListener (() => {
+			SwitchFromMentorToMain();
         });
 
 		// 通常画面用のGUIを無効にする
@@ -77,10 +82,33 @@ public class CameraManager : MonoBehaviour {
 		// MainCameraを無効にする
 		mainCamera.SetActive(false);
 
+		// GUIに値を設定
+		MstCharacter chara = avator.GetComponent<MentorAvatorBehavior>().Chara;
+		mentorViewNameText.text = chara.Name;
+		mentorViewExplanationText.text = chara.FlavorText;
+
 		// mentorに紐づいたDiveCameraを有効にする
-		avator.GetComponent<MentorAvatorBehavior>().DiveCamera.SetActive(true);
+		avator.GetComponent<MentorAvatorBehavior>().MentorCamera.SetActive(true);
 
 		// VR View画面用のGUIを有効にする
-		vrViewUI.SetActive(true);
+		mentorViewUI.SetActive(true);
+	}
+
+	public void SwitchFromMentorToMain ()
+	{
+		// VR View画面用のGUIを無効にする
+		mentorViewUI.SetActive(false);
+
+		//Dive Cameraを無効にする
+		avator.GetComponent<MentorAvatorBehavior>().MentorCamera.SetActive(false);
+
+		// MainCameraを有効にする
+		mainCamera.SetActive(true);
+
+		// 通常画面用のGUIを有効にする
+		normalStateUI.SetActive(true);
+
+		// クラス変数をリセット
+		avator = null;
 	}
 }
